@@ -1,4 +1,6 @@
 let choices = ['rock', 'paper', 'scissor'];
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -6,26 +8,38 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+    const playerSelection = prompt('rock, paper or scissor?').toLowerCase();
+    const computerSelection = getComputerChoice();
+
+    let result; 
 
     if (playerSelection === 'rock' && computerSelection === 'scissor') {
-        return 'You won! Rock beats Scissor';
+        playerScore++;
+        result = 'You won! Rock beats Scissor';
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        return 'You lost! Paper beats Rock'; 
+        computerScore++;
+        result = 'You lost! Paper beats Rock'; 
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You won! Paper beats Rock';
+        playerScore++;
+        result = 'You won! Paper beats Rock';
     } else if (playerSelection === 'paper' && computerSelection === 'scissor') {
-        return 'You lost! Scissor beats Paper';
+        computerScore++;
+        result = 'You lost! Scissor beats Paper';
     } else if (playerSelection === 'scissor' && computerSelection === 'rock') {
-        return 'You lost! Rock beats Scissor';
+        computerScore++;
+        result = 'You lost! Rock beats Scissor';
     } else if (playerSelection === 'scissor' && computerSelection === 'paper') {
-        return 'You won! Scissor beats Paper';
+        playerScore++;
+        result = 'You won! Scissor beats Paper';
     } else {
-        return 'It\'s a draw!';
+        result = 'It\'s a draw!';
     }
+    return result;
 }
 
-const playerSelection = 'rock';
-const computerSelection = getComputerChoice();
+//const playerSelection = 'scissor';
+//const computerSelection = getComputerChoice();
+//console.log(playRound(playerSelection, computerSelection));
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {}
 
