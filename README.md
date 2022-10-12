@@ -1,1 +1,3 @@
-# rock-paper-scissor
+Odin Project: Rock-Paper-Scissor
+
+Skills Demonstrated: Basic Javascript
