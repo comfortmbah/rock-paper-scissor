@@ -39,3 +39,9 @@
 .scores {
     display: flex;
 }
+
+.labels {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
