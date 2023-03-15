@@ -1,4 +1,16 @@
-/*let choices = ['rock', 'paper', 'scissor'];
+const btnOption = document.querySelectorAll('div.btnOptions button');
+const playerPoint = document.querySelector('#playerScore');
+const computerPoint = document.querySelector("#computerScore");
+const roundResult = document.querySelector("#roundResults");
+const resetBtn = document.querySelector("#resetBtn");
+
+resetBtn.addEventListener('click', () => location.reload());
+
+btnOption.forEach(button => {
+    button.addEventListener('click', getPlayerChoice)
+})
+
+let choices = ['rock', 'paper', 'scissor'];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -7,53 +19,54 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+function getPlayerChoice(e) {
+    let playerSelection = e.target.id;
+    playRound(playerSelection, getComputerChoice());
+}
+
 function playRound(playerSelection, computerSelection) {
 
-    let result; 
-
     if (playerSelection === 'rock' && computerSelection === 'scissor') {
-        playerScore++;
-        result = 'You won! Rock beats Scissor';
+        playerPoint.textContent = ++playerScore;
+        roundResult.textContent = 'You won! Rock beats Scissor';
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        computerScore++;
-        result = 'You lost! Paper beats Rock'; 
+        computerPoint.textContent = ++computerScore;
+        roundResult.textContent = 'You lost! Paper beats Rock'; 
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore++;
-        result = 'You won! Paper beats Rock';
+        playerPoint.textContent = ++playerScore;
+        roundResult.textContent = 'You won! Paper beats Rock';
     } else if (playerSelection === 'paper' && computerSelection === 'scissor') {
-        computerScore++;
-        result = 'You lost! Scissor beats Paper';
+        computerPoint.textContent = ++computerScore;
+        roundResult.textContent = 'You lost! Scissor beats Paper';
     } else if (playerSelection === 'scissor' && computerSelection === 'rock') {
-        computerScore++;
-        result = 'You lost! Rock beats Scissor';
+        computerPoint.textContent = ++computerScore;
+        roundResult.textContent = 'You lost! Rock beats Scissor';
     } else if (playerSelection === 'scissor' && computerSelection === 'paper') {
-        playerScore++;
-        result = 'You won! Scissor beats Paper';
+        playerPoint.textContent = ++playerScore;
+        roundResult.textContent = 'You won! Scissor beats Paper';
     } else {
-        result = 'It\'s a draw!';
+        playerPoint.textContent = ++playerScore;
+        computerPoint.textContent = ++computerScore;
+        roundResult.textContent = 'It\'s a draw!';
     }
-    return result;
+    checkWinner();
 }
 
-//const playerSelection = 'scissor';
-//const computerSelection = getComputerChoice();
-//console.log(playRound(playerSelection, computerSelection));
+function checkWinner() {
+    if (playerScore === 5 || computerScore === 5) {
+        if (playerScore === computerScore) {
+            roundResult.textContent = "The game is a tie!";
+        } else if (playerScore > computerScore) {
+            roundResult.textContent = "You win the game! Bravo";
+            roundResult.style.color = 'green';
+        } else {
+            roundResult.textContent = "You Lost the game. Try harder";
+            roundResult.style.color = 'red';
+        }
 
-function game() {
-    
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Choose Rock Paper or Scissors!').toLowerCase();
-        const computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection)
-    }
-
-    if (playerScore > computerScore) {
-        console.log('Congratulations! You won');
-    } else if (playerScore < computerScore) {
-        console.log('Ohh! You lost, Computer won')
-    } else if (playerScore === computerScore) {
-        console.log('Draw');
+        btnOption.forEach(button => {
+            button.removeEventListener('click', getPlayerChoice)
+        })
     }
 }
 
-game();*/
