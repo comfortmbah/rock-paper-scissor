@@ -1,4 +1,4 @@
-let choices = ['rock', 'paper', 'scissor'];
+/*let choices = ['rock', 'paper', 'scissor'];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -56,4 +56,4 @@ function game() {
     }
 }
 
-game();
+game();*/
